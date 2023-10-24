@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mon-api
+  labels:
+    appName: mon-api
+spec:
+  containers:
+  - name: mon-api
+    image: registry.cluster.wik.cloud/public/echo
+    ports:
+    - containerPort: 8080

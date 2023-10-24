@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mon-api-replicaset
+  labels:
+    appName: mon-api
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      appName: mon-api
+  template:
+    metadata:
+      labels:
+        appName: mon-api
+    spec:
+      containers:
+      - name: mon-api
+        image: registry.cluster.wik.cloud/public/echo
+        ports:
+        - containerPort: 8080

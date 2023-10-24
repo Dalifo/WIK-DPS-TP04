@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mon-api-deployment
+  labels:
+    appName: mon-api
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      appName: mon-api
+  template:
+    metadata:
+      labels:
+        appName: mon-api
+    spec:
+      containers:
+      - name: mon-api
+        image: registry.cluster.wik.cloud/public/echo
+        ports:
+        - containerPort: 8080
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 1
